@@ -25,7 +25,7 @@ class View(ft.UserControl):
 
     def load_interface(self):
         # title
-        self._title = ft.Text("TdP 2024 - Esame del 04-07-2024 - A", color="blue", size=24)
+        self._title = ft.Text("TdP 2024 - Esame del 04-07-2024 - B", color="blue", size=24)
         self._page.controls.append(self._title)
 
         # First row with some controls
