@@ -101,3 +101,25 @@ class DAO():
             cursor.close()
             cnx.close()
         return result
+
+
+    @staticmethod
+    def get_nodes(year: int, state: str):
+        cnx = DBConnect.get_connection()
+        result = []
+        if cnx is None:
+            print("Connessione fallita")
+        else:
+            cursor = cnx.cursor(dictionary=True)
+            query = """SELECT *
+                        FROM sighting s 
+                        WHERE Year(s.datetime)=%s AND s.state =%s
+                        ORDER BY s.datetime ASC"""
+            cursor.execute(query, (year, state,))
+
+            for row in cursor:
+                result.append(Sighting(**row))
+
+            cursor.close()
+            cnx.close()
+        return result
