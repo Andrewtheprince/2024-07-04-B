@@ -86,7 +86,8 @@ class Model:
 
     def _calcola_successivi(self, nodo: Sighting) -> list[Sighting]:
         """
-        Calcola il sottoinsieme dei successivi ad un nodo che hanno durata superiore a quella del nodo.
+        Calcola il sottoinsieme dei successivi ad un nodo che hanno durata superiore a quella del nodo e che non eccedano
+        il numero massimo di occorrenze per un dato mese.
         """
         successivi = self._grafo.neighbors(nodo)
         successivi_ammissibili = []
