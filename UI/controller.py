@@ -32,6 +32,10 @@ class Controller:
         self._view.txt_result1.controls.append(ft.Text(f"Numero di nodi: {n}"))
         self._view.txt_result1.controls.append(ft.Text(f"Numero di archi: {a}"))
         self._view.txt_result1.controls.append(ft.Text(f"Il grafo ha: {c} componente connessa"))
+        compMagg = self._model.infoComponenteConnessa()
+        self._view.txt_result1.controls.append(ft.Text(f"La componente connessa più grande è costituita da {len(compMagg)} nodi: "))
+        for nodo in compMagg:
+            self._view.txt_result1.controls.append(ft.Text(nodo))
         self._view.update_page()
 
 

@@ -28,3 +28,9 @@ class Model:
 
     def getGraphDetails(self):
         return self._graph.number_of_nodes(), self._graph.number_of_edges(), nx.number_connected_components(self._graph)
+
+    def infoComponenteConnessa(self):
+        componenti = list(nx.connected_components(self._graph))
+        componente_maggiore = max(componenti, key=len)
+        sottografo = self._graph.subgraph(componente_maggiore).copy()
+        return sottografo.nodes()
