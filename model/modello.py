@@ -3,8 +3,28 @@ import networkx as nx
 
 class Model:
     def __init__(self):
-        pass
+        self._graph = nx.Graph()
+        self._idMap = {}
 
     @staticmethod
     def getAnni():
         return DAO.getAnni()
+
+    @staticmethod
+    def getStati(anno):
+        return DAO.getStati(anno)
+
+    def buildGraph(self, anno, stato):
+        self._graph.clear()
+        self._idMap.clear()
+        sightning = DAO.getAvvistamenti(anno, stato)
+        self._graph.add_nodes_from(sightning)
+        for nodo in sightning:
+            self._idMap[nodo.id] = nodo
+        archi = DAO.getArchi(stato, anno)
+        for arco in archi:
+            if self._idMap[arco["id1"]].distance_HV(self._idMap[arco["id2"]]) < 100:
+                self._graph.add_edge(self._idMap[arco["id1"]], self._idMap[arco["id2"]])
+
+    def getGraphDetails(self):
+        return self._graph.number_of_nodes(), self._graph.number_of_edges()
