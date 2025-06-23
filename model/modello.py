@@ -27,4 +27,4 @@ class Model:
                 self._graph.add_edge(self._idMap[arco["id1"]], self._idMap[arco["id2"]])
 
     def getGraphDetails(self):
-        return self._graph.number_of_nodes(), self._graph.number_of_edges()
+        return self._graph.number_of_nodes(), self._graph.number_of_edges(), nx.number_connected_components(self._graph)

@@ -27,10 +27,11 @@ class Controller:
 
     def handle_graph(self, e):
         self._model.buildGraph(self._annoScelto, self._statoScelto.id)
-        n, a = self._model.getGraphDetails()
+        n, a, c = self._model.getGraphDetails()
         self._view.txt_result1.clean()
         self._view.txt_result1.controls.append(ft.Text(f"Numero di nodi: {n}"))
         self._view.txt_result1.controls.append(ft.Text(f"Numero di archi: {a}"))
+        self._view.txt_result1.controls.append(ft.Text(f"Il grafo ha: {c} componente connessa"))
         self._view.update_page()
 
 
